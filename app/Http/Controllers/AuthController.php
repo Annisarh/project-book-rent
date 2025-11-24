@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -26,6 +29,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // cek apakah sudah status sudah diactivasi admin
             if (Auth::user()->status != 'active') {
+                Auth::logout();
+                // Hapus session
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
                 return back()->with('error', 'activasi belum di approve admin');
             }
             // dd(Auth::user()->role->name);
@@ -51,5 +59,22 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+    public function store(Request $request)
+    {
+        $rule = [
+            'username' => 'required|string|min:2|unique:users',
+            'password' => 'required|min:6|max:255',
+            'phone' => 'min:12',
+            'address' => 'required|min:6'
+        ];
+        $validatedData = $request->validate($rule);
+        $role = Role::where('name', 'client')->first();
+        $validatedData['role_id'] = $role->id;
+        $validatedData['password'] = Hash::make($request->password);
+        // dd($validatedData);
+        User::create($validatedData);
+        return redirect()->route('auth.register')->with('success', 'User berhasil ditambahkan, tunggu admin approve');
     }
 }

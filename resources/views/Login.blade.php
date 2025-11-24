@@ -21,7 +21,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" class="border bg-gray-100 px-2 py-1 w-full" required autocomplete="off">
                 </div>
-                <button type="submit" class="bg-blue-800 text-white w-full px-8 py-2 mt-4">Login</button>
+                <button type="submit" class="bg-blue-800 text-white w-full px-8 py-2 mt-4 cursor-pointer">Login</button>
                 <span>Belum ada akun? <a href="{{route('auth.register')}}" class="text-blue-500 underline">Sign up</a></span>
                 @if (session('error'))
                      <div class="text-red-400">
