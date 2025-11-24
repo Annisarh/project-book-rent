@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class RoleSeeder extends Seeder
         ];
         foreach ($data as $value) {
             Role::insert([
+                'id' => Str::uuid(),
                 'name' => $value
             ]);
         }

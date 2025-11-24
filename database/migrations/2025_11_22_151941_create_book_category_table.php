@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_category', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));;
+            $table->uuid('id')->primary();
             $table->uuid('book_id');
             $table->foreign('book_id')->references('id')->on('books');
             $table->uuid('category_id');
