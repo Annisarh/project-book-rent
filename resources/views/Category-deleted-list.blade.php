@@ -2,13 +2,10 @@
 @section('title', 'Categori')
 @section('content')
     {{-- bagian table start --}}
-    <h1 class="font-bold my-5 text-3xl text-slate-800">#Categories</h1>
+    <h1 class="font-bold my-5 text-3xl text-slate-800">#Categories Deleted List</h1>
     <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default mb-5">
-        <a href="category-add" class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none absolute right-4 top-4">
-            Tambah Category
-        </a>
-        <a href="category-deleted" class="inline-flex items-center text-white bg-green-500 box-border border border-transparent hover:bg-green-700 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none absolute right-45 top-4">
-            Restore Category
+        <a href="categories" class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none absolute right-4 top-4">
+            Back->
         </a>
          @if (session('success'))
             <div class="text-white bg-green-400 p-6">
@@ -30,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $item)
+                @foreach ($categoryDeleted as $item)
                 <tr class="bg-neutral-primary border-b border-default">
                     <td class="px-6 py-4">
                         {{$loop->iteration}}
@@ -39,7 +36,7 @@
                         {{$item->name}}
                     </th>
                     <td class="px-6 py-4">
-                        <a href="category-edit/{{$item->slug}}">Edit</a> |
+                        <a href="category-restore/{{$item->slug}}">Restore</a> |
                         <a href="category-delete/{{$item->slug}}" onclick="return confirm('yakin ingin mendelete {{$item->name}}?')">Delete</a>
                     </td>
                 </tr>

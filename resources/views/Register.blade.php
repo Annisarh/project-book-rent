@@ -12,7 +12,7 @@
         <div class="min-w-md border rounded">
             <form action="{{route('auth.register.store')}}" method="POST" class="p-8 space-y-4">
                 @csrf
-                 @if (session('success'))
+                @if (session('success'))
                      <div class="text-green-300">
                         {{ session('success') }}
                       </div>
