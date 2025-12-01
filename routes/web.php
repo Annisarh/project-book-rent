@@ -27,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users/detail/{id}', [UserController::class, 'detail'])->name('users.detail');
+
+
     Route::get('/rent-logs', [RentLogsController::class, 'index'])->name('rent-logs');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category');

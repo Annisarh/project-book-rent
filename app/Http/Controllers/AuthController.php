@@ -67,12 +67,19 @@ class AuthController extends Controller
             'username' => 'required|string|min:2|unique:users',
             'password' => 'required|min:6|max:255',
             'phone' => 'min:12',
-            'address' => 'required|min:6'
+            'address' => 'required|min:6',
+            'ktp' => 'file|mimes:png,jpg,jpeg,avif'
         ];
         $validatedData = $request->validate($rule);
         $role = Role::where('name', 'client')->first();
         $validatedData['role_id'] = $role->id;
         $validatedData['password'] = Hash::make($request->password);
+        if ($request->file('ktp')) {
+            $ekstension = $request->file('ktp')->getClientOriginalExtension();
+            $newName = $request->username . '.' . now()->timestamp . '.' . $ekstension;
+            $request->file('ktp')->storeAs('ktp', $newName);
+        }
+        $validatedData['ktp'] = $newName;
         // dd($validatedData);
         User::create($validatedData);
         return redirect()->route('auth.register')->with('success', 'User berhasil ditambahkan, tunggu admin approve');

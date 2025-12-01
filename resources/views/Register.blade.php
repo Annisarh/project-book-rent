@@ -10,14 +10,14 @@
   <body>
     <div class="min-h-screen flex justify-center items-center box-border">
         <div class="min-w-md border rounded">
-            <form action="{{route('auth.register.store')}}" method="POST" class="p-8 space-y-4">
+            <form action="{{route('auth.register.store')}}" method="POST" class="p-4 space-y-2" enctype="multipart/form-data">
                 @csrf
                 @if (session('success'))
                      <div class="text-green-300">
                         {{ session('success') }}
                       </div>
                 @endif
-                <h1 class="text-center text-2xl mb-8 font-bold">Register</h1>
+                <h1 class="text-center text-2xl font-bold">Register</h1>
                 <div class="flex flex-col justify-between items-center gap-2">
                     <label for="username" class="w-full">Username</label>
                     <input type="text" id="username" name="username" class="border bg-gray-100 px-2 py-1 w-full @error('username') is-invalid @enderror" required autocomplete="off" value="{{old('username')}}">
@@ -44,6 +44,13 @@
                     <textarea type="text" id="address" name="address" class="border bg-gray-100 px-2 py-1 w-full @error('address') is-invalid @enderror" required autocomplete="off">{{old('address')}}</textarea>
                     @error('address')
                         <div class="text-left text-red-400 w-full">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="flex flex-col justify-between items-center gap-2">
+                    <label for="address" class="w-full">User Identity (KTP)</label>
+                   <input type="file" id="ktp" name="ktp" class="border bg-gray-100 px-2 py-1 w-full @error('ktp') is-invalid @enderror">
+                   @error('ktp')
+                       <div class="text-left text-red-400 w-full">{{ $message }}</div>
                     @enderror
                 </div>
                 <button type="submit" class="bg-blue-800 text-white w-full px-8 py-2 mt-4 cursor-pointer">Register</button>

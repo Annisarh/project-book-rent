@@ -38,7 +38,9 @@ class User extends Authenticatable
         'password',
         'phone',
         'address',
-        'role_id'
+        'role_id',
+        'profile',
+        'ktp'
     ];
 
     // satu user hanya boleh 1 role
