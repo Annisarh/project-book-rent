@@ -1,10 +1,10 @@
 @extends('layouts.mainLayout')
-@section('title', 'Categori')
+@section('title', 'Books')
 @section('content')
     {{-- bagian table start --}}
-    <h1 class="font-bold my-5 text-3xl text-slate-800">#Categories Deleted List</h1>
+    <h1 class="font-bold my-5 text-3xl text-slate-800">#Books Deleted List</h1>
     <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default mb-5">
-        <a href="category" class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none absolute right-4 top-4">
+        <a href="{{route('books')}}" class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none absolute right-4 top-4">
             Back->
         </a>
          @if (session('success'))
@@ -19,7 +19,10 @@
                         No.
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        Name Categories
+                        Book code
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Book title
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
                         Action
@@ -27,17 +30,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categoryDeleted as $item)
+                @foreach ($booksDeleted as $item)
                 <tr class="bg-neutral-primary border-b border-default">
                     <td class="px-6 py-4">
                         {{$loop->iteration}}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        {{$item->name}}
+                        {{$item->book_code}}
+                    </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                        {{$item->title}}
                     </th>
                     <td class="px-6 py-4">
-                        <a href="category-restore/{{$item->slug}}">Restore</a> |
-                        <a href="category-delete/{{$item->slug}}" onclick="return confirm('yakin ingin mendelete {{$item->name}}?')">Delete</a>
+                        <a href="books-restore/{{$item->slug}}">Restore</a> |
+                        <a href="books-delete/{{$item->slug}}" onclick="return confirm('yakin ingin mendelete {{$item->name}}?')">Delete</a>
                     </td>
                 </tr>
                 @endforeach

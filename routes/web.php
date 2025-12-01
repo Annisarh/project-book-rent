@@ -17,10 +17,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'index'])->name('client.profile')->middleware('onlyClient');
 
     Route::get('/books', [BooksController::class, 'index'])->name('books');
+    Route::get('/books-add', [BooksController::class, 'add'])->name('books.add');
+    Route::post('/books-add', [BooksController::class, 'store'])->name('books.store');
+    Route::get('/books-edit/{slug}', [BooksController::class, 'edit'])->name('books.edit');
+    Route::put('/books-edit/{slug}', [BooksController::class, 'update'])->name('books.update');
+    Route::get('/books-delete/{slug}', [BooksController::class, 'delete'])->name('books.delete');
+    Route::get('/books-deleted', [BooksController::class, 'deletedBooks'])->name('books.deleted');
+    Route::get('/books-restore/{slug}', [BooksController::class, 'restore'])->name('books.restore');
+
+
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/rent-logs', [RentLogsController::class, 'index'])->name('rent-logs');
 
-    Route::get('/categories', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('/category-add', [CategoryController::class, 'add'])->name('category.add');
     Route::post('/category-add', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/category-edit/{slug}', [CategoryController::class, 'edit'])->name('category.edit');

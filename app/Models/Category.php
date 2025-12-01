@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Book;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -36,4 +37,9 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    // public function books()
+    // {
+    //     return $this->belongsToMany(Book::class, 'book_category', 'category_id', 'book_id');
+    // }
 }
