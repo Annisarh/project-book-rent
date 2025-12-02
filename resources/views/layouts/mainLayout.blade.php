@@ -64,10 +64,11 @@
          </svg>
     </button>
 
-    <aside id="sidebar-multi-level-sidebar" class="fixed top-0 pt-18 max-sm:pt-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+    <aside id="sidebar-multi-level-sidebar" class="fixed top-0 pt-18 max-sm:pt-0 left-0 z-40 w-50 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
             <ul class="space-y-2 font-medium">
-                @if (Auth::user()->role->name == 'admin')
+                @if (Auth::user())
+                   @if (Auth::user()->role->name == 'admin')
                     <li class="{{ request()->is('dashboard*') ? 'text-blue-500 font-bold border-b-2 border-blue-500' : '' }}">
                         <a href="{{route('admin.dashboard')}}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                         <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/></svg>
@@ -104,34 +105,42 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Logout</span>
                         </a>
                     </li>
+                    @else
+                        <li class="{{ request()->is('books*') ? 'text-blue-500 font-bold border-b-2 border-blue-500' : '' }}">
+                            <a href="" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                            <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/></svg>
+                            <span class="ms-3">Books list</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->is('profile*') ? 'text-blue-500 font-bold border-b-2 border-blue-500' : '' }}">
+                            <a href="profile" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                            <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13h3.439a.991.991 0 0 1 .908.6 3.978 3.978 0 0 0 7.306 0 .99.99 0 0 1 .908-.6H20M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M4 13l2-9h12l2 9M9 7h6m-7 3h8"/></svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
+                            {{-- <span class="inline-flex items-center justify-center w-4.5 h-4.5 ms-2 text-xs font-medium text-fg-danger-strong bg-danger-soft border border-danger-subtle rounded-full">2</span> --}}
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="logout" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                            <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/></svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Logout</span>
+                            </a>
+                        </li>
+                    @endif 
                 @else
-                    <li class="{{ request()->is('books*') ? 'text-blue-500 font-bold border-b-2 border-blue-500' : '' }}">
-                        <a href="books" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
+                <li class="{{ request()->is('login*') ? 'text-blue-500 font-bold border-b-2 border-blue-500' : '' }}">
+                        <a href="{{route('login')}}" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                         <svg class="w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/></svg>
-                        <span class="ms-3">Books</span>
+                        <span class="ms-3">Login</span>
                         </a>
-                    </li>
-                    <li class="{{ request()->is('profile*') ? 'text-blue-500 font-bold border-b-2 border-blue-500' : '' }}">
-                        <a href="profile" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13h3.439a.991.991 0 0 1 .908.6 3.978 3.978 0 0 0 7.306 0 .99.99 0 0 1 .908-.6H20M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M4 13l2-9h12l2 9M9 7h6m-7 3h8"/></svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
-                        {{-- <span class="inline-flex items-center justify-center w-4.5 h-4.5 ms-2 text-xs font-medium text-fg-danger-strong bg-danger-soft border border-danger-subtle rounded-full">2</span> --}}
-                        </a>
-                    </li> 
-                    <li>
-                        <a href="logout" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
-                        <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/></svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Logout</span>
-                        </a>
-                    </li>
+                </li>
                 @endif
             </ul>
         </div>
     </aside>
 
     {{-- bagian content start --}}
-    <div class="pt-17 max-sm:pt-0 sm:ml-64 bg-slate-300 min-h-screen">
-        <div class="px-8 py-4 mb-4 mt-5">
+    <div class="pt-17 max-sm:pt-0 sm:ml-50 bg-slate-300 min-h-screen">
+        <div class="px-8 py-4 mb-4 mt-1">
             @yield('content')
         </div>
     </div>

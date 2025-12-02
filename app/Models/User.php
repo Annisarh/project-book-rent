@@ -38,6 +38,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'address',
+        'status',
         'role_id',
         'profile',
         'ktp'

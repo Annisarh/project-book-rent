@@ -7,40 +7,43 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RentLogsController;
 use App\Http\Controllers\DashbaordController;
+use App\Http\Controllers\PublicController;
 
+Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile')->name('profile');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [DashbaordController::class, 'index'])->name('admin.dashboard')->middleware('onlyAdmin');
-    Route::get('/profile', [UserController::class, 'index'])->name('client.profile')->middleware('onlyClient');
 
-    Route::get('/books', [BooksController::class, 'index'])->name('books');
-    Route::get('/books-add', [BooksController::class, 'add'])->name('books.add');
-    Route::post('/books-add', [BooksController::class, 'store'])->name('books.store');
-    Route::get('/books-edit/{slug}', [BooksController::class, 'edit'])->name('books.edit');
-    Route::put('/books-edit/{slug}', [BooksController::class, 'update'])->name('books.update');
-    Route::get('/books-delete/{slug}', [BooksController::class, 'delete'])->name('books.delete');
-    Route::get('/books-deleted', [BooksController::class, 'deletedBooks'])->name('books.deleted');
-    Route::get('/books-restore/{slug}', [BooksController::class, 'restore'])->name('books.restore');
+    Route::get('/books', [BooksController::class, 'index'])->name('books')->middleware('onlyAdmin');
+    Route::get('/books-add', [BooksController::class, 'add'])->name('books.add')->middleware('onlyAdmin');
+    Route::post('/books-add', [BooksController::class, 'store'])->name('books.store')->middleware('onlyAdmin');
+    Route::get('/books-edit/{slug}', [BooksController::class, 'edit'])->name('books.edit')->middleware('onlyAdmin');
+    Route::put('/books-edit/{slug}', [BooksController::class, 'update'])->name('books.update')->middleware('onlyAdmin');
+    Route::get('/books-delete/{slug}', [BooksController::class, 'delete'])->name('books.delete')->middleware('onlyAdmin');
+    Route::get('/books-deleted', [BooksController::class, 'deletedBooks'])->name('books.deleted')->middleware('onlyAdmin');
+    Route::get('/books-restore/{slug}', [BooksController::class, 'restore'])->name('books.restore')->middleware('onlyAdmin');
 
 
-    Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::get('/users/detail/{id}', [UserController::class, 'detail'])->name('users.detail');
+    Route::get('/users', [UserController::class, 'index'])->name('users')->middleware('onlyAdmin');
+    Route::get('/users/detail/{id}', [UserController::class, 'detail'])->name('users.detail')->middleware('onlyAdmin');
+    Route::put('/users/detail/{id}', [UserController::class, 'update'])->name('users.update')->middleware('onlyAdmin');
+    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete')->middleware('onlyAdmin');
 
 
     Route::get('/rent-logs', [RentLogsController::class, 'index'])->name('rent-logs');
 
-    Route::get('/category', [CategoryController::class, 'index'])->name('category');
-    Route::get('/category-add', [CategoryController::class, 'add'])->name('category.add');
-    Route::post('/category-add', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category-edit/{slug}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::put('/category-edit/{slug}', [CategoryController::class, 'update'])->name('category.update');
-    Route::put('/category-edit/{slug}', [CategoryController::class, 'update'])->name('category.update');
-    Route::get('/category-delete/{slug}', [CategoryController::class, 'delete'])->name('category.delete');
-    Route::get('/category-deleted', [CategoryController::class, 'deletedCategory'])->name('category.deleted');
-    Route::get('/category-restore/{slug}', [CategoryController::class, 'restore'])->name('category.restore');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category')->middleware('onlyAdmin');
+    Route::get('/category-add', [CategoryController::class, 'add'])->name('category.add')->middleware('onlyAdmin');
+    Route::post('/category-add', [CategoryController::class, 'store'])->name('category.store')->middleware('onlyAdmin');
+    Route::get('/category-edit/{slug}', [CategoryController::class, 'edit'])->name('category.edit')->middleware('onlyAdmin');
+    Route::put('/category-edit/{slug}', [CategoryController::class, 'update'])->name('category.update')->middleware('onlyAdmin');
+    Route::put('/category-edit/{slug}', [CategoryController::class, 'update'])->name('category.update')->middleware('onlyAdmin');
+    Route::get('/category-delete/{slug}', [CategoryController::class, 'delete'])->name('category.delete')->middleware('onlyAdmin');
+    Route::get('/category-deleted', [CategoryController::class, 'deletedCategory'])->name('category.deleted')->middleware('onlyAdmin');
+    Route::get('/category-restore/{slug}', [CategoryController::class, 'restore'])->name('category.restore')->middleware('onlyAdmin');
 });
 
 Route::middleware(['onlyGuest'])->group(function () {

@@ -43,7 +43,7 @@ class AuthController extends Controller
                 return redirect()->intended('dashboard');
             }
             if (Auth::user()->role->name == 'client') {
-                return redirect()->intended('profile');
+                return redirect()->intended('/');
             }
         }
 

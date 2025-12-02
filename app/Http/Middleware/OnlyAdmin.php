@@ -17,7 +17,7 @@ class OnlyAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->role->name !== 'admin') {
-            return redirect('books');
+            return redirect('home');
         }
         return $next($request);
     }
