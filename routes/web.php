@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookRent;
+use App\Http\Controllers\BookRentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoryController;
@@ -34,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/rent-logs', [RentLogsController::class, 'index'])->name('rent-logs');
+
+    Route::get('/book-rent', [BookRentController::class, 'index'])->name('book.rent')->middleware('onlyAdmin');
+    Route::post('/book-rent', [BookRentController::class, 'store'])->name('book.store')->middleware('onlyAdmin');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category')->middleware('onlyAdmin');
     Route::get('/category-add', [CategoryController::class, 'add'])->name('category.add')->middleware('onlyAdmin');
