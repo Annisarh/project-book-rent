@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/book-rent', [BookRentController::class, 'index'])->name('book.rent')->middleware('onlyAdmin');
     Route::post('/book-rent', [BookRentController::class, 'store'])->name('book.store')->middleware('onlyAdmin');
+    Route::get('/book-return', [BookRentController::class, 'return'])->name('book.return')->middleware('onlyAdmin');
+    Route::get('/book-return/{id}', [BookRentController::class, 'getBook'])->name('book.getBook')->middleware('onlyAdmin');
+    Route::post('/book-return', [BookRentController::class, 'update'])->name('book.updateRent')->middleware('onlyAdmin');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('category')->middleware('onlyAdmin');
     Route::get('/category-add', [CategoryController::class, 'add'])->name('category.add')->middleware('onlyAdmin');

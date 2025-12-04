@@ -101,4 +101,5 @@ class BooksController extends Controller
         $book->restore();
         return redirect()->route('books')->with('success', 'books restore Successfully');
     }
+
 }
