@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Category;
 use App\Models\User;
+use App\Models\RentLog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class DashbaordController extends Controller
@@ -14,6 +15,7 @@ class DashbaordController extends Controller
         $bookCount = Book::count();
         $categoriesCount = Category::count();
         $userCount = User::count();
-        return view('Dashboard', compact('bookCount', 'categoriesCount', 'userCount'));
+        $rentLogs = RentLog::with(['user', 'book'])->limit(5)->get();
+        return view('Dashboard', compact('bookCount', 'categoriesCount', 'userCount', 'rentLogs'));
     }
 }

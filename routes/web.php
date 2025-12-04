@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete')->middleware('onlyAdmin');
 
 
-    Route::get('/rent-logs', [RentLogsController::class, 'index'])->name('rent-logs');
+    Route::get('/rent-logs', [RentLogsController::class, 'index'])->name('rent-logs')->name('rentLogs');
 
     Route::get('/book-rent', [BookRentController::class, 'index'])->name('book.rent')->middleware('onlyAdmin');
     Route::post('/book-rent', [BookRentController::class, 'store'])->name('book.store')->middleware('onlyAdmin');

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RentLog extends Model
@@ -31,4 +33,13 @@ class RentLog extends Model
         'return_date',
         'actual_return_date',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

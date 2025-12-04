@@ -2,6 +2,7 @@
 @section('title', 'User detail')
 @section('content')
     <h1 class="font-bold my-5 text-3xl text-slate-800">#detail user</h1>
+    <button type="button" class="text-white bg-green-500 box-border border border-transparent hover:bg-green-700 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none mb-6 absolute right-25 z-10 mt-4"><a href="{{route('users')}}">Back</a></button>
     <div class="flex gap-4">
         <div class="relative bg-neutral-primary-soft max-w-md w-full p-6 border border-default rounded-base shadow-xs">
             <div class="flex flex-col items-center">
@@ -38,6 +39,8 @@
             @endif
         </div>
     </div>
-    <button type="button" class="text-white bg-green-500 box-border border border-transparent hover:bg-green-700 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none mb-6 absolute z-10 mt-4"><a href="{{route('users')}}">Back</a></button>
+    <div class="mt-6">
+        <x-rent-log-table :rentLogs="$rentLogs" />
+    </div>
 
 @endsection
