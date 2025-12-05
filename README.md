@@ -93,11 +93,11 @@ This project is open‑source and available under the MIT License.
 
 ## Screenshots
 
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss1.png)
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss2.png)
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss3.png)
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss4.png)
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss5.png)
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss6.png)
-![App Screenshot](https://github.com/Annisarh/project-book-rent/public/images/Book-rent/ss7.png)
+![App Screenshot](public/images/Book-rent/ss1.png)
+![App Screenshot](public/images/Book-rent/ss2.png)
+![App Screenshot](public/images/Book-rent/ss3.png)
+![App Screenshot](public/images/Book-rent/ss4.png)
+![App Screenshot](public/images/Book-rent/ss5.png)
+![App Screenshot](public/images/Book-rent/ss6.png)
+![App Screenshot](public/images/Book-rent/ss7.png)
 
